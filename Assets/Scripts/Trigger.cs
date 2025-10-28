@@ -3,11 +3,13 @@ using UnityEngine;
 public class Trigger : MonoBehaviour
 {
     public AudioSource loopingMusic;
+    public AudioClip music;
     private bool paused;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        loopingMusic = GetComponent<AudioSource>();
         loopingMusic.UnPause();
         paused = false;
     }
