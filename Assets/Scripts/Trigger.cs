@@ -3,14 +3,17 @@ using UnityEngine;
 public class Trigger : MonoBehaviour
 {
     public AudioSource loopingMusic;
+    public AudioSource sounds;
     public AudioClip music;
+    public AudioClip pickup1;
+    public AudioClip pickup2;
     private bool paused;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        loopingMusic = GetComponent<AudioSource>();
-        loopingMusic.UnPause();
+        loopingMusic.clip = music;
+        loopingMusic.Play();
         paused = false;
     }
 
@@ -20,14 +23,26 @@ public class Trigger : MonoBehaviour
         {
             if (paused == false)
             {
-                loopingMusic.Pause();
                 paused = true;
+                loopingMusic.Pause();
             }
             else
             {
-                loopingMusic.UnPause();
                 paused = false;
+                loopingMusic.UnPause();
             }
+        }
+
+        if (other.CompareTag("Pickup1"))
+        {
+            sounds.clip = pickup1;
+            sounds.Play();
+        }
+
+        if (other.CompareTag("Pickup2"))
+        {
+            sounds.clip = pickup2;
+            sounds.Play();
         }
     }
 }
